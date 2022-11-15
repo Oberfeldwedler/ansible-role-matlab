@@ -1,0 +1,13 @@
+---
+# defaults file for oberfeldwedler.matlab
+
+# e.g. 'R2022a'
+matlab_version: ''
+#nfs Host
+remoteInstallerHost: ''
+#path to installer files on nfs Host
+remoteInstallerPath: ''
+installationFolder: '/tmp/matlab'
+destinationFolder: '/opt/matlab'
+fileInstallationKey: '123456-123456-123456-123456-123456-123456-.......'
+LicenseFile: 'network.lic'

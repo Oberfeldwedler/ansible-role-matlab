@@ -1,0 +1,16 @@
+---
+
+- name: Mount Installer-files
+  ansible.posix.mount:
+    path: /mnt/matlab-installer/
+    state: absent
+
+- name: Delete mount-directory for Installer-files
+  ansible.builtin.file:
+    path: /mnt/matlab-installer/
+    state: absent
+
+- name: delete matlab tmp-install-directory
+  ansible.builtin.file:
+    path: "{{ installationFolder }}"
+    state: absent

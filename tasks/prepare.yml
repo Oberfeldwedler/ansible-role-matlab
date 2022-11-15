@@ -1,0 +1,33 @@
+---
+
+- name: create matlab tmp-install-directory
+  ansible.builtin.file:
+    path: "{{ installationFolder }}"
+    state: directory
+    mode: '0755'
+
+- name: create matlab destination-directory
+  ansible.builtin.file:
+    path: "{{ destinationFolder }}"
+    state: directory
+    mode: '0755'
+
+- name: Create mount-directory for Installer-files
+  ansible.builtin.file:
+    path: /mnt/matlab-installer
+    state: directory
+    mode: '0755'
+
+- name: Mount Installer-files
+  ansible.posix.mount:
+    src: "{{ remoteInstallerHost }}:{{ remoteInstallerPath }}"
+    path: /mnt/matlab-installer/
+    state: mounted
+    fstype: nfs
+
+- name: Copy Installer-files to installation directory
+  ansible.posix.synchronize:
+    src: /mnt/matlab-installer/
+    dest: "{{ installationFolder }}"
+  delegate_to: "{{ inventory_hostname }}"
+
