@@ -10,7 +10,7 @@
     path: /mnt/matlab-installer/
     state: absent
 
-- name: delete matlab tmp-install-directory
+- name: Delete matlab tmp-install-directory
   ansible.builtin.file:
     path: "{{ installationFolder }}"
     state: absent

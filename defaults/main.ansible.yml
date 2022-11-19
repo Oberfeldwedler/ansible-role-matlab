@@ -1,0 +1,5 @@
+---
+# defaults file for oberfeldwedler.matlab
+
+matlab_installationFolder: '/tmp/matlab'
+matlab_destinationFolder: '/opt/matlab'

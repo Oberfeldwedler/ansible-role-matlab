@@ -1,0 +1,23 @@
+---
+# tasks file for oberfeldwedler.matlab
+
+- name: Checking if matlab is already installed
+  ansible.builtin.stat:
+    path: "{{ destinationFolder }}/{{ matlab_version }}/VersionInfo.xml"
+  register: matlab_installed
+
+- name: Matlab install status
+  ansible.builtin.debug:
+    msg: "{{ matlab_installed.stat.exists }}"
+
+- name: Import prepare Playbook
+  ansible.builtin.import_tasks: prepare.ansible.yml
+  when: not matlab_installed.stat.exists
+
+- name: Import installation Playbook
+  ansible.builtin.import_tasks: install.ansible.yml
+  when: not matlab_installed.stat.exists
+
+- name: Import cleanup Playbook
+  ansible.builtin.import_tasks: cleanup.ansible.yml
+  when: not matlab_installed.stat.exists
